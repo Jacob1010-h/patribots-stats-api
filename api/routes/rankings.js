@@ -1,6 +1,6 @@
 import express from 'express';
 import { fetchDataAndProcess, getTeamRankingArr } from '../Data.js';
-import { getAllData } from '../jsonData.js';
+import { getAllData } from '../JsonData.js';
 var router = express.Router();
 
 /* GET home page. */

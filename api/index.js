@@ -1,13 +1,11 @@
 import express from 'express';
 import indexRouter from './routes/rankings.js' ;
-import usersRouter from './routes/users.js';
-import db from './config.js';
+import db from './Config.js';
 
 const app = express();
 app.use(express.json());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 const PORT = process.env.PORT || 3030;
 

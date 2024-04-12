@@ -1,4 +1,4 @@
-import { getAllData } from './jsonData.js';
+import { getAllData } from './JsonData.js';
 
 var eventCode = '2024lake';
 
