@@ -453,7 +453,7 @@ export function getTeamRankingArr() {
     return Array.from(orderedTeamMap.keys());
 }
 
-function getTeamRank(team) {
+export function getTeamRank(teamRankingArr, team) {
     for (let i = 0; i < teamRankingArr.length; i++) {
         if (teamRankingArr[i] == team) {
             return i + 1;

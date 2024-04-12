@@ -1,19 +1,33 @@
 import express from 'express';
-import { fetchDataAndProcess, getTeamRankingArr } from '../Data.js';
+import { fetchDataAndProcess, getTeamRank, getTeamRankingArr } from '../Data.js';
 import { getAllData } from '../JsonData.js';
 var router = express.Router();
 
+const noRoute =
+    'Here are the available routes: /, /rankings/:team, /rankings/:eventCode/:team';
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.send('please specify a team number');
+router.get('/', function (req, res, next) {
+    const response = noRoute;
+    res.send(response);
 });
 
-router.get('/:team', (req, res) => {
+router.get('/rankings', (req, res) => {
     fetchDataAndProcess("2024lake").then((data) => {
+        res.send(data.teamRankingArr);
+    }).catch((error) => {
+        console.log(error);
+    });
+});
+
+router.get('/rankings/:team', (req, res) => {
+    const eventCode = "2024lake";
+    fetchDataAndProcess(eventCode).then((data) => {
         var rank = getTeamRank(data.teamRankingArr, req.params.team);
         const response = {
             team: req.params.team,
-            rank: rank
+            rank: rank,
+            eventCode: eventCode
         }
         res.send(response);
     }).catch((error) => {
@@ -21,26 +35,18 @@ router.get('/:team', (req, res) => {
     });
 });
 
-router.get('/:eventCode/:team', (req, res) => {
+router.get('/rankings/:eventCode/:team', (req, res) => {
     fetchDataAndProcess(req.params.eventCode).then((data) => {
         var rank = getTeamRank(data.teamRankingArr, req.params.team);
         const response = {
             team: req.params.team,
-            rank: rank
+            rank: rank,
+            eventCode: req.params.eventCode
         }
         res.send(response);
     }).catch((error) => {
         console.log(error);
     });
 });
-
-function getTeamRank(teamRankingArr, team) {
-    for (let i = 0; i < teamRankingArr.length; i++) {
-        if (teamRankingArr[i] == team) {
-            return i + 1;
-        }
-    }
-    return -1;
-}
 
 export default router;
