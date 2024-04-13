@@ -1,11 +1,14 @@
 import express from 'express';
-import indexRouter from './routes/rankings.js' ;
-import db from './Config.js';
+import landingRouter from './routes/landing.js';
+import dataRouter from './routes/dataRouter.js';
+import teamsRouter from './routes/teams.js';
 
 const app = express();
 app.use(express.json());
 
-app.use('/', indexRouter);
+app.use('/', landingRouter);
+app.use('/data', dataRouter);
+app.use('/teams', teamsRouter);
 
 const PORT = process.env.PORT || 3030;
 

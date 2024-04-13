@@ -1,4 +1,4 @@
-import { getAllData } from './JsonData.js';
+import { getAllData } from './jsonDatabase.js';
 
 var eventCode = '2024lake';
 
@@ -118,16 +118,16 @@ let teamRankingArr;
 // Working:
 export const fetchDataAndProcess = async (eventCode) => {
     const data = await getAllData();
-    console.log(eventCode);
+    // console.log(eventCode);
     if (eventCode.toLowerCase() === 'all') {
         let bigData = JSON.parse(data)['old-data'];
         rawData = mergeEventCodes(bigData);
-        console.log(rawData);
+        // console.log(rawData);
     } else {
         rawData = JSON.parse(data)['old-data'][eventCode];
     }
 
-    console.log(rawData);
+    // console.log(rawData);
     commentData = resortColumnByPoint(
         convertCommentsToTableForm(rawData),
         'Team',
@@ -210,22 +210,22 @@ export const fetchDataAndProcess = async (eventCode) => {
     //     ))
 
     return {
-        rawData: rawData,
-        commentData: commentData,
-        commentDataMap: convertTableToMap(commentData),
-        numData: numData,
-        numDataMap: convertTableToMap(numData),
-        commentTeamMap: commentTeamMap,
-        numTeamMap: numTeamMap,
-        bigTeamMap: bigTeamMap,
-        allData: allData,
-        teamAverageMap: teamAverageMap,
-        rawDataMap: rawDataMap,
-        rankingTable: rankingTable,
-        maxMin: maxMin,
-        maxMinOfAverages: maxMinOfAverages,
-        bigTeamMapSplit: bigTeamMapSplit,
-        teamRankingArr: teamRankingArr,
+        rawData: rawData, // /data/raw
+        commentData: commentData, // /data/comments
+        commentDataMap: convertTableToMap(commentData), // /data/comments/map
+        numData: numData, // /data/numbers
+        numDataMap: convertTableToMap(numData), // /data/numbers/map
+        commentTeamMap: commentTeamMap, // /data/comment/map
+        numTeamMap: numTeamMap, // /data/num/map
+        bigTeamMap: bigTeamMap, // /data/big/map
+        allData: allData, // /data/all
+        teamAverageMap: teamAverageMap, // /data/average/map
+        rawDataMap: rawDataMap, // /data/raw/map
+        rankingTable: rankingTable, // /rankings/table
+        maxMin: maxMin, // /maxMin
+        maxMinOfAverages: maxMinOfAverages, // /maxMinOfAverages
+        bigTeamMapSplit: bigTeamMapSplit, // /data/big/map/split
+        teamRankingArr: teamRankingArr, // /team/rankings
     };
 };
 
@@ -311,25 +311,25 @@ function mergeEventCodes(data) {
     let keys = Object.keys(data);
     let mergedData = {};
     for (let i = 0; i < keys.length; i++) {
-        console.log(data[keys[i]]);
+        // console.log(data[keys[i]]);
         let code = keys[i];
         let matches = Object.keys(data[keys[i]]);
         for (let j = 0; j < matches.length; j++) {
             mergedData[code + ': ' + matches[j]] = data[code][matches[j]];
-            console.log(mergedData);
+            // console.log(mergedData);
         }
     }
     return mergedData;
 }
 // Working:
 function convertAllToTableForm(data) {
-    console.log(data);
+    // console.log(data);
     let tempComments = convertCommentsToTableForm(data);
     let tempNumData = convertNumDataToTableForm(data);
     let table = [];
     tempComments[0].pop();
     table.push([tempComments[0], tempNumData[0]].flat());
-    console.log(table);
+    // console.log(table);
     table[0].pop();
     // console.log(table);
     for (let i = 0; i < tempComments.length - 1; i++) {
@@ -358,20 +358,20 @@ function getMaxMin(data) {
             }
         }
     }
-    console.log(sol);
+    // console.log(sol);
     return sol;
 }
 
 function getMaxMinOfAverages() {
     let arr = [];
-    console.log(teamAverageMap);
+    // console.log(teamAverageMap);
     let keys = Array.from(teamAverageMap.keys());
-    console.log(keys);
+    // console.log(keys);
     arr.push(teamAverageMap.get(keys[0])[0]);
     for (let i = 0; i < keys.length; i++) {
         arr.push(getTeamAverage(keys[i])[1]);
     }
-    console.log(arr);
+    // console.log(arr);
     return getMaxMin(arr);
 }
 
@@ -393,7 +393,7 @@ function resortColumn(data, columnInitial, columnGoal) {
 
 // Working but EXTREMELY INEFFICIENT?
 export function resortColumnsByArray(data, orderArr) {
-    console.log(data);
+    // console.log(data);
     let newData = [...data];
     for (let i = 0; i < orderArr.length; i++) {
         newData = resortColumnByPoint(newData, orderArr[i], i);
@@ -567,7 +567,7 @@ function convertToTeamMap(data) {
         }
     }
     // console.log(teamMap);
-    console.log(teamMap);
+    // console.log(teamMap);
     return teamMap;
 }
 

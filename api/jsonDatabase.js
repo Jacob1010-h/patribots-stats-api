@@ -1,6 +1,6 @@
 import { ref, get } from 'firebase/database';
 import 'firebase/database';
-import db from './Config.js';
+import db from './firebaseConfig.js';
 
 //Frank's Middle
 export async function getAllData() {
