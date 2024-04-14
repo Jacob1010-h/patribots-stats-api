@@ -67,6 +67,16 @@ router.get('/rankings', (req, res) => {
         });
 });
 
+router.get('/rankings/json', (req, res) => {
+    fetchDataAndProcess('2024lake')
+        .then((data) => {
+            res.send(data.teamRankingJson);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
 router.get('/rankings/table', (req, res) => {
     fetchDataAndProcess('2024lake')
         .then((data) => {

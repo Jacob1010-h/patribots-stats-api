@@ -226,8 +226,19 @@ export const fetchDataAndProcess = async (eventCode) => {
         maxMinOfAverages: maxMinOfAverages, // /maxMinOfAverages
         bigTeamMapSplit: bigTeamMapSplit, // /data/big/map/split
         teamRankingArr: teamRankingArr, // /team/rankings
+        teamRankingJson: convertTeamRankingToJson(teamRankingArr), // /team/rankings/json
     };
 };
+
+function convertTeamRankingToJson(teamRankingArr) {
+    let result = teamRankingArr.map((team, index) => {
+        return {
+            rank: index + 1,
+            team: team,
+        };
+    });
+    return result;
+}
 
 const getTeamData = (team) => {
     return bigTeamMap.get(team);
