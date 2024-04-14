@@ -233,8 +233,8 @@ export const fetchDataAndProcess = async (eventCode) => {
 function convertTeamRankingToJson(teamRankingArr) {
     let result = teamRankingArr.map((team, index) => {
         return {
-            rank: index + 1,
             team: team,
+            rank: index + 1,
         };
     });
     return result;

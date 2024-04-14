@@ -4,7 +4,7 @@ import { fetchDataAndProcess, getTeamRank } from '../database.js';
 var router = express.Router();
 
 router.get('/', function (req, res, next) {
-    res.send('The team routes are: /rankings, /rankings/table, /rankings/:team, /rankings/:eventCode/:team, /comment/map, /num/map, /big/map, /big/map/split, /average/map');
+    res.send('The team routes are: /rankings, /rankings/json, /rankings/table, /rankings/:team, /rankings/:eventCode/:team, /comment/map, /num/map, /big/map, /big/map/split, /average/map');
 });
 
 router.get('/comment/map', (req, res) => {
