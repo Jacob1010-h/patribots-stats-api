@@ -163,7 +163,7 @@ export const fetchDataAndProcess = async (eventCode) => {
         'Temp Failure',
         'Trap',
     ]);
-    console.log(numData);
+    // console.log(numData);
     commentData = resortColumnsByArray(commentData, [
         'Team',
         'Match Number',
@@ -180,7 +180,7 @@ export const fetchDataAndProcess = async (eventCode) => {
     commentTeamMap = convertTableToMap(commentData);
     numTeamMap = convertToTeamMap(numData);
     teamAverageMap = getTeamAverageMap();
-    console.log(getTeamAverage('4738'));
+    // console.log(getTeamAverage('4738'));
     allData = resortColumnByPoint(convertAllToTableForm(rawData), 'Team', 0);
     bigTeamMap = convertToTeamMap(allData);
     bigTeamMapSplit = [
@@ -209,6 +209,12 @@ export const fetchDataAndProcess = async (eventCode) => {
     // ]
     //     ))
 
+    teamAverageMap = Object.fromEntries(teamAverageMap);
+    numTeamMap = Object.fromEntries(numTeamMap);
+    bigTeamMap = Object.fromEntries(bigTeamMap);
+    maxMin = Object.fromEntries(maxMin);
+    maxMinOfAverages = Object.fromEntries(maxMinOfAverages);
+    console.log(teamAverageMap  );
     const fullData = {
         rawData: rawData, // /data/raw
         commentData: commentData, // /data/comments
@@ -633,6 +639,6 @@ function getTeamAverageMap() {
         // console.log(getTeamAverage(teams[i]));
         averageMap.set(teams[i], getTeamAverage(teams[i]));
     }
-    // console.log(averageMap);
+    console.log(averageMap);
     return averageMap;
 }
