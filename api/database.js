@@ -226,6 +226,7 @@ export const fetchDataAndProcess = async (eventCode) => {
         maxMinOfAverages: maxMinOfAverages, // /maxMinOfAverages
         bigTeamMapSplit: bigTeamMapSplit, // /data/big/map/split
         teamRankingArr: teamRankingArr, // /team/rankings
+        teamRankingJson: convertTeamRankingToJson(teamRankingArr), // /team/rankings/json
     };
 
     return {
@@ -233,6 +234,16 @@ export const fetchDataAndProcess = async (eventCode) => {
         ...fullData,
     };
 };
+
+function convertTeamRankingToJson(teamRankingArr) {
+    let result = teamRankingArr.map((team, index) => {
+        return {
+            team: team,
+            rank: index + 1,
+        };
+    });
+    return result;
+}
 
 const getTeamData = (team) => {
     return bigTeamMap.get(team);
