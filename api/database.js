@@ -209,7 +209,7 @@ export const fetchDataAndProcess = async (eventCode) => {
     // ]
     //     ))
 
-    return {
+    const fullData = {
         rawData: rawData, // /data/raw
         commentData: commentData, // /data/comments
         commentDataMap: convertTableToMap(commentData), // /data/comments/map
@@ -226,6 +226,11 @@ export const fetchDataAndProcess = async (eventCode) => {
         maxMinOfAverages: maxMinOfAverages, // /maxMinOfAverages
         bigTeamMapSplit: bigTeamMapSplit, // /data/big/map/split
         teamRankingArr: teamRankingArr, // /team/rankings
+    };
+
+    return {
+        fullData: {...fullData},
+        ...fullData,
     };
 };
 
