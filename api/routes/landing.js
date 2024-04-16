@@ -1,5 +1,5 @@
 import express from 'express';
-import { fetchDataAndProcess } from '../database.js';
+import { fetchDataAndProcess, fetchDataAndProcessAll } from '../database.js';
 
 var router = express.Router();
 
