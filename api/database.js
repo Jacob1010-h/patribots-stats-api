@@ -114,17 +114,21 @@ let bigTeamMapSplit;
 let rankingsMap;
 let teamScoreMap;
 let teamRankingArr;
+
 // Use an async function to fetch and process your data
 // Working:
 export const fetchDataAndProcess = async (eventCode) => {
     const data = await getAllData();
-    // console.log(eventCode);
+    console.log(eventCode);
+    eventCode = eventCode.toLowerCase();
+    console.log(eventCode);
     if (eventCode.toLowerCase() === 'all') {
         let bigData = JSON.parse(data)['old-data'];
         rawData = mergeEventCodes(bigData);
         // console.log(rawData);
     } else {
         rawData = JSON.parse(data)['old-data'][eventCode];
+        // console.log(JSON.parse(data)['old-data']);
     }
 
     // console.log(rawData);
@@ -209,12 +213,7 @@ export const fetchDataAndProcess = async (eventCode) => {
     // ]
     //     ))
 
-    teamAverageMap = Object.fromEntries(teamAverageMap);
-    numTeamMap = Object.fromEntries(numTeamMap);
-    bigTeamMap = Object.fromEntries(bigTeamMap);
-    maxMin = Object.fromEntries(maxMin);
-    maxMinOfAverages = Object.fromEntries(maxMinOfAverages);
-    console.log(teamAverageMap  );
+    // console.log(teamAverageMap  );
     const fullData = {
         rawData: rawData, // /data/raw
         commentData: commentData, // /data/comments
@@ -222,14 +221,14 @@ export const fetchDataAndProcess = async (eventCode) => {
         numData: numData, // /data/numbers
         numDataMap: convertTableToMap(numData), // /data/numbers/map
         commentTeamMap: commentTeamMap, // /data/comment/map
-        numTeamMap: numTeamMap, // /data/num/map
-        bigTeamMap: bigTeamMap, // /data/big/map
+        numTeamMap: Object.fromEntries(numTeamMap), // /data/num/map
+        bigTeamMap: Object.fromEntries(bigTeamMap), // /data/big/map
         allData: allData, // /data/all
-        teamAverageMap: teamAverageMap, // /data/average/map
+        teamAverageMap: Object.fromEntries(teamAverageMap),
         rawDataMap: rawDataMap, // /data/raw/map
         rankingTable: rankingTable, // /rankings/table
-        maxMin: maxMin, // /maxMin
-        maxMinOfAverages: maxMinOfAverages, // /maxMinOfAverages
+        maxMin: Object.fromEntries(maxMin), // /maxMin
+        maxMinOfAverages: Object.fromEntries(maxMinOfAverages), // /maxMinOfAverages
         bigTeamMapSplit: bigTeamMapSplit, // /data/big/map/split
         teamRankingArr: teamRankingArr, // /team/rankings
         teamRankingJson: convertTeamRankingToJson(teamRankingArr), // /team/rankings/json
@@ -239,6 +238,11 @@ export const fetchDataAndProcess = async (eventCode) => {
         fullData: {...fullData},
         ...fullData,
     };
+};
+
+
+export const fetchDataAndProcessAll = async () => {
+    return fetchDataAndProcess(eventCode);
 };
 
 function convertTeamRankingToJson(teamRankingArr) {

@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/raw', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.rawData);
         })
@@ -18,7 +18,7 @@ router.get('/raw', (req, res) => {
 });
 
 router.get('/raw/map', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.rawDataMap);
         })
@@ -28,7 +28,7 @@ router.get('/raw/map', (req, res) => {
 });
 
 router.get('/comments', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.commentData);
         })
@@ -38,7 +38,7 @@ router.get('/comments', (req, res) => {
 });
 
 router.get('/comments/map', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.commentDataMap);
         })
@@ -48,7 +48,7 @@ router.get('/comments/map', (req, res) => {
 });
 
 router.get('/numbers', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.numData);
         })
@@ -58,7 +58,7 @@ router.get('/numbers', (req, res) => {
 });
 
 router.get('/numbers/map', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.numDataMap);
         })
@@ -68,7 +68,7 @@ router.get('/numbers/map', (req, res) => {
 });
 
 router.get('/all', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.allData);
         })
@@ -78,7 +78,7 @@ router.get('/all', (req, res) => {
 });
 
 router.get('/maxMin', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.maxMin);
         })
@@ -88,7 +88,7 @@ router.get('/maxMin', (req, res) => {
 });
 
 router.get('/maxMin/averages', (req, res) => {
-    fetchDataAndProcess('2024lake')
+    fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.maxMinOfAverages);
         })

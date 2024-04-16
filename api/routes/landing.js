@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/full', (req, res) => {
-    fetchDataAndProcess('2024lake').then((data) => {
+    fetchDataAndProcessAll().then((data) => {
         res.send(data.fullData);
     });
 });
