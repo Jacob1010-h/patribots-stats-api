@@ -4,7 +4,7 @@ import { fetchDataAndProcessAll } from '../database.js';
 var router = express.Router();
 
 router.get('/', function (req, res, next) {
-    res.send('The data routes are: /raw, /raw/map, /comments, /comments/map, /numbers, /numbers/map, /all');
+    res.send('The data routes are: /raw, /raw/map, /comments, /comments/map, /numbers, /numbers/map, /all, /maxMin, /maxMin/averages');
 });
 
 router.get('/raw', (req, res) => {
