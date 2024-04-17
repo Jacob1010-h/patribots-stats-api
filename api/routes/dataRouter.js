@@ -4,10 +4,28 @@ import { fetchDataAndProcess, fetchDataAndProcessAll } from '../database.js';
 var router = express.Router();
 
 router.get('/', function (req, res, next) {
-    res.send('The data routes are: /raw, /raw/map, /comments, /comments/map, /numbers, /numbers/map, /all, /maxMin, /maxMin/averages');
+    res.send('The data routes are: \n'
+        + '/raw/data \n'
+        + '/raw/data/:eventCode \n'
+        + '/raw/map \n'
+        + '/raw/map/:eventCode \n'
+        + '/comments/data \n'
+        + '/comments/data/:eventCode \n'
+        + '/comments/map \n'
+        + '/comments/map/:eventCode \n'
+        + '/numbers/data \n'
+        + '/numbers/data/:eventCode \n'
+        + '/numbers/map \n'
+        + '/numbers/map/:eventCode \n'
+        + '/all \n'
+        + '/all/:eventCode \n'
+        + '/maxMin/data \n'
+        + '/maxMin/data/:eventCode \n'
+        + '/maxMin/averages \n'
+        + '/maxMin/averages/:eventCode');
 });
 
-router.get('/raw', (req, res) => {
+router.get('/raw/data', (req, res) => {
     fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.rawData);
@@ -17,7 +35,7 @@ router.get('/raw', (req, res) => {
         });
 });
 
-router.get('/raw/:eventCode', (req, res) => {
+router.get('/raw/data/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data) => {
             res.send(data.rawData);
@@ -47,7 +65,7 @@ router.get('/raw/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/comments', (req, res) => {
+router.get('/comments/data', (req, res) => {
     fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.commentData);
@@ -57,7 +75,7 @@ router.get('/comments', (req, res) => {
         });
 });
 
-router.get('/comments/:eventCode', (req, res) => {
+router.get('/comments/data/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data) => {
             res.send(data.commentData);
@@ -87,7 +105,7 @@ router.get('/comments/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/numbers', (req, res) => {
+router.get('/numbers/data', (req, res) => {
     fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.numData);
@@ -97,7 +115,7 @@ router.get('/numbers', (req, res) => {
         });
 });
 
-router.get('/numbers/:eventCode', (req, res) => {
+router.get('/numbers/data/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data) => {
             res.send(data.numData);
@@ -147,7 +165,7 @@ router.get('/all/:eventCode', (req, res) => {
         });
 });
 
-router.get('/maxMin', (req, res) => {
+router.get('/maxMin/data', (req, res) => {
     fetchDataAndProcessAll()
         .then((data) => {
             res.send(data.maxMin);
@@ -157,7 +175,7 @@ router.get('/maxMin', (req, res) => {
         });
 });
 
-router.get('/maxMin/:eventCode', (req, res) => {
+router.get('/maxMin/data/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data) => {
             res.send(data.maxMin);
