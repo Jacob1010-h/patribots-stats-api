@@ -119,9 +119,9 @@ let teamRankingArr;
 // Working:
 export const fetchDataAndProcess = async (eventCode) => {
     const data = await getAllData();
-    console.log(eventCode);
+    // console.log(eventCode);
     eventCode = eventCode.toLowerCase();
-    console.log(eventCode);
+    // console.log(eventCode);
     if (eventCode.toLowerCase() === 'all') {
         let bigData = JSON.parse(data)['old-data'];
         rawData = mergeEventCodes(bigData);
@@ -188,9 +188,13 @@ export const fetchDataAndProcess = async (eventCode) => {
     allData = resortColumnByPoint(convertAllToTableForm(rawData), 'Team', 0);
     bigTeamMap = convertToTeamMap(allData);
     bigTeamMapSplit = [
-        convertToTeamMap(numData),
-        convertToTeamMap(commentData),
+        ...convertToTeamMap(numData),
+        ...convertToTeamMap(commentData),
     ];
+    console.log(convertToTeamMap(numData));
+    console.log("\n\n\n\n\n\n\n");
+    console.log(convertToTeamMap(commentData));
+
     rawDataMap = convertTableToMap(numData);
     rankingTable = getRankingTable();
     maxMinOfAverages = getMaxMinOfAverages();
@@ -643,6 +647,6 @@ function getTeamAverageMap() {
         // console.log(getTeamAverage(teams[i]));
         averageMap.set(teams[i], getTeamAverage(teams[i]));
     }
-    console.log(averageMap);
+    // console.log(averageMap);
     return averageMap;
 }
