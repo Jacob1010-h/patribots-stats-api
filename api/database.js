@@ -191,9 +191,6 @@ export const fetchDataAndProcess = async (eventCode) => {
         ...convertToTeamMap(numData),
         ...convertToTeamMap(commentData),
     ];
-    console.log(convertToTeamMap(numData));
-    console.log("\n\n\n\n\n\n\n");
-    console.log(convertToTeamMap(commentData));
 
     rawDataMap = convertTableToMap(numData);
     rankingTable = getRankingTable();
