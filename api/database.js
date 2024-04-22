@@ -1,6 +1,6 @@
 import { getAllData } from './jsonDatabase.js';
 
-var eventCode = '2024lake';
+var eventCode = '2024arc';
 
 function assignAllScores(data) {
     return assignScores(data, [
@@ -100,7 +100,7 @@ const speakerWeights = {
 let rawData;
 let commentData;
 let numData;
-let commentTeamMap;
+let commentTableMap;
 let numTeamMap;
 let bigTeamMap;
 let allData;
@@ -114,32 +114,28 @@ let bigTeamMapSplit;
 let rankingsMap;
 let teamScoreMap;
 let teamRankingArr;
+let commentTeamMap;
 
 // Use an async function to fetch and process your data
 // Working:
 export const fetchDataAndProcess = async (eventCode) => {
+    
     const data = await getAllData();
-    // console.log(eventCode);
-    eventCode = eventCode.toLowerCase();
-    // console.log(eventCode);
     if (eventCode.toLowerCase() === 'all') {
-        let bigData = JSON.parse(data)['old-data'];
+        let bigData = JSON.parse(data)['scouting'];
         rawData = mergeEventCodes(bigData);
-        // console.log(rawData);
     } else {
-        rawData = JSON.parse(data)['old-data'][eventCode];
-        // console.log(JSON.parse(data)['old-data']);
+        rawData = JSON.parse(data)['scouting'][eventCode];
     }
 
-    // console.log(rawData);
     commentData = resortColumnByPoint(
         convertCommentsToTableForm(rawData),
         'Team',
         0
     );
+    console.log('test');
     numData = convertNumDataToTableForm(rawData);
     numData = assignAllScores(numData);
-
     numData = resortColumnsByArray(numData, [
         'Team',
         'Score',
@@ -167,7 +163,6 @@ export const fetchDataAndProcess = async (eventCode) => {
         'Temp Failure',
         'Trap',
     ]);
-    // console.log(numData);
     commentData = resortColumnsByArray(commentData, [
         'Team',
         'Match Number',
@@ -178,67 +173,47 @@ export const fetchDataAndProcess = async (eventCode) => {
         'What They Did Well',
         'Additional Comments',
     ]);
-    // console.log(numData);
-    // console.log(numData[1]);
     maxMin = getMaxMin(numData);
     commentTeamMap = convertTableToMap(commentData);
     numTeamMap = convertToTeamMap(numData);
     teamAverageMap = getTeamAverageMap();
-    // console.log(getTeamAverage('4738'));
     allData = resortColumnByPoint(convertAllToTableForm(rawData), 'Team', 0);
     bigTeamMap = convertToTeamMap(allData);
     bigTeamMapSplit = [
-        ...convertToTeamMap(numData),
-        ...convertToTeamMap(commentData),
+        convertToTeamMap(numData),
+        convertToTeamMap(commentData),
     ];
-
+    // console.log(bigTeamMapSplit);
     rawDataMap = convertTableToMap(numData);
     rankingTable = getRankingTable();
     maxMinOfAverages = getMaxMinOfAverages();
     teamScoreMap = getDataPointMap('Score');
     teamRankingArr = getTeamRankingArr();
 
-    // console.log(teamAverageMap.get("1323"));
-    // console.log(predictTeamScore(
-    // [
-    //     teamAverageMap.get("1234"),
-    //     teamAverageMap.get("2234"),
-    //     teamAverageMap.get("4234")
-    // ]
-    // ))
-    // console.log(predictTeamScore2(
-    // [
-    //     teamAverageMap.get("4234"),
-    //     teamAverageMap.get("1234"),
-    //     teamAverageMap.get("2234")
-    // ]
-    //     ))
-
-    // console.log(teamAverageMap  );
     const fullData = {
-        rawData: rawData, // /data/raw
-        commentData: commentData, // /data/comments
-        commentDataMap: convertTableToMap(commentData), // /data/comments/map
-        numData: numData, // /data/numbers
-        numDataMap: convertTableToMap(numData), // /data/numbers/map
-        commentTeamMap: commentTeamMap, // /data/comment/map
-        numTeamMap: Object.fromEntries(numTeamMap), // /data/num/map
-        bigTeamMap: Object.fromEntries(bigTeamMap), // /data/big/map
-        allData: allData, // /data/all
-        teamAverageMap: Object.fromEntries(teamAverageMap),
-        rawDataMap: rawDataMap, // /data/raw/map
-        rankingTable: rankingTable, // /rankings/table
-        maxMin: Object.fromEntries(maxMin), // /maxMin
-        maxMinOfAverages: Object.fromEntries(maxMinOfAverages), // /maxMinOfAverages
-        bigTeamMapSplit: bigTeamMapSplit, // /data/big/map/split
-        teamRankingArr: teamRankingArr, // /team/rankings
-        teamRankingJson: convertTeamRankingToJson(teamRankingArr), // /team/rankings/json
+        rawData: rawData,
+        commentData: commentData,
+        commentDataMap: convertTableToMap(commentData),
+        numData: numData,
+        numDataMap: convertTableToMap(numData),
+        commentTeamMap: commentTeamMap,
+        numTeamMap: [...numTeamMap],
+        bigTeamMap: [...bigTeamMap],
+        allData: allData,
+        teamAverageMap: [...teamAverageMap],
+        rawDataMap: rawDataMap,
+        rankingTable: rankingTable,
+        maxMin: [...maxMin],
+        maxMinOfAverages: [...maxMinOfAverages],
+        //? TODO: Why does ths return empty?
+        bigTeamMapSplit: bigTeamMapSplit,
+        teamRankingArr: teamRankingArr,
     };
 
     return {
         fullData: {...fullData},
         ...fullData,
-    };
+    }
 };
 
 
@@ -267,7 +242,7 @@ const getTeamNumData = (team) => {
     return numTeamMap.get(team);
 };
 const getTeamCommentData = (team) => {
-    return commentTeamMap.get(team);
+    return commentTableMap.get(team);
 };
 
 // Working
