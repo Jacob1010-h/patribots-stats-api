@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { fetchDataAndProcess, fetchDataAndProcessAll, getTeamRank } from '../database.js';
 
 var router = express.Router();
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req : Request, res : Response, next : NextFunction) {
     res.send('The team routes are:'
         + '\n/comment/map'
         + '\n/comment/map/:eventCode'
@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
         + '\n/rankings/team/:team/:eventCode');
 });
 
-router.get('/comment/map', (req, res) => {
+router.get('/comment/map', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.commentTeamMap);
@@ -35,7 +35,7 @@ router.get('/comment/map', (req, res) => {
         });
 });
 
-router.get('/comment/map/:eventCode', (req, res) => {
+router.get('/comment/map/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.commentTeamMap);
@@ -45,7 +45,7 @@ router.get('/comment/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/num/map', (req, res) => {
+router.get('/num/map', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.numTeamMap);
@@ -55,7 +55,7 @@ router.get('/num/map', (req, res) => {
         });
 });
 
-router.get('/num/map/:eventCode', (req, res) => {
+router.get('/num/map/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.numTeamMap);
@@ -65,7 +65,7 @@ router.get('/num/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/big/map', (req, res) => {
+router.get('/big/map', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.bigTeamMap);
@@ -75,7 +75,7 @@ router.get('/big/map', (req, res) => {
         });
 });
 
-router.get('/big/map/:eventCode', (req, res) => {
+router.get('/big/map/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.bigTeamMap);
@@ -85,7 +85,7 @@ router.get('/big/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/big/mapSplit', (req, res) => {
+router.get('/big/mapSplit', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.bigTeamMapSplit);
@@ -95,7 +95,7 @@ router.get('/big/mapSplit', (req, res) => {
         });
 });
 
-router.get('/big/mapSplit/:eventCode', (req, res) => {
+router.get('/big/mapSplit/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.bigTeamMapSplit);
@@ -105,7 +105,7 @@ router.get('/big/mapSplit/:eventCode', (req, res) => {
         });
 });
 
-router.get('/average/map', (req, res) => {
+router.get('/average/map', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.teamAverageMap);
@@ -115,7 +115,7 @@ router.get('/average/map', (req, res) => {
         });
 });
 
-router.get('/average/map/:eventCode', (req, res) => {
+router.get('/average/map/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.teamAverageMap);
@@ -125,7 +125,7 @@ router.get('/average/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/rankings/arr', (req, res) => {
+router.get('/rankings/arr', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.teamRankingArr);
@@ -135,7 +135,7 @@ router.get('/rankings/arr', (req, res) => {
         });
 });
 
-router.get('/rankings/arr/:eventCode', (req, res) => {
+router.get('/rankings/arr/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.teamRankingArr);
@@ -145,7 +145,7 @@ router.get('/rankings/arr/:eventCode', (req, res) => {
         });
 });
 
-router.get('/rankings/json', (req, res) => {
+router.get('/rankings/json', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.teamRankingJson);
@@ -155,7 +155,7 @@ router.get('/rankings/json', (req, res) => {
         });
 });
 
-router.get('/rankings/json/:eventCode', (req, res) => {
+router.get('/rankings/json/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.teamRankingJson);
@@ -165,7 +165,7 @@ router.get('/rankings/json/:eventCode', (req, res) => {
         });
 });
 
-router.get('/rankings/table', (req, res) => {
+router.get('/rankings/table', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.rankingTable);
@@ -175,7 +175,7 @@ router.get('/rankings/table', (req, res) => {
         });
 });
 
-router.get('/rankings/table/:eventCode', (req, res) => {
+router.get('/rankings/table/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.rankingTable);
@@ -185,7 +185,7 @@ router.get('/rankings/table/:eventCode', (req, res) => {
         });
 });
 
-router.get('/rankings/team/:team', (req, res) => {
+router.get('/rankings/team/:team', (req : Request, res : Response) => {
     const eventCode = '2024lake';
     fetchDataAndProcess(eventCode)
         .then((data: any) => {
@@ -202,7 +202,7 @@ router.get('/rankings/team/:team', (req, res) => {
         });
 });
 
-router.get('/rankings/team/:team/:eventCode', (req, res) => {
+router.get('/rankings/team/:team/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             var rank = getTeamRank(data.teamRankingArr, req.params.team);

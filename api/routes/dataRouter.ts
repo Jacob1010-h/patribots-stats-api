@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { fetchDataAndProcess, fetchDataAndProcessAll } from '../database.js';
 
 var router = express.Router();
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req : Request, res : Response, next : NextFunction) {
     res.send('The data routes are: \n'
         + '/raw/data \n'
         + '/raw/data/:eventCode \n'
@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
         + '/maxMin/averages/:eventCode');
 });
 
-router.get('/raw/data', (req, res) => {
+router.get('/raw/data', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data : any) => {
             res.send(data.rawData);
@@ -35,7 +35,7 @@ router.get('/raw/data', (req, res) => {
         });
 });
 
-router.get('/raw/data/:eventCode', (req, res) => {
+router.get('/raw/data/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.rawData);
@@ -45,7 +45,7 @@ router.get('/raw/data/:eventCode', (req, res) => {
         });
 });
 
-router.get('/raw/map', (req, res) => {
+router.get('/raw/map', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.rawDataMap);
@@ -55,7 +55,7 @@ router.get('/raw/map', (req, res) => {
         });
 });
 
-router.get('/raw/map/:eventCode', (req, res) => {
+router.get('/raw/map/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.rawDataMap);
@@ -65,7 +65,7 @@ router.get('/raw/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/comments/data', (req, res) => {
+router.get('/comments/data', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.commentData);
@@ -75,7 +75,7 @@ router.get('/comments/data', (req, res) => {
         });
 });
 
-router.get('/comments/data/:eventCode', (req, res) => {
+router.get('/comments/data/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.commentData);
@@ -85,7 +85,7 @@ router.get('/comments/data/:eventCode', (req, res) => {
         });
 });
 
-router.get('/comments/map', (req, res) => {
+router.get('/comments/map', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.commentDataMap);
@@ -95,7 +95,7 @@ router.get('/comments/map', (req, res) => {
         });
 });
 
-router.get('/comments/map/:eventCode', (req, res) => {
+router.get('/comments/map/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.commentDataMap);
@@ -105,7 +105,7 @@ router.get('/comments/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/numbers/data', (req, res) => {
+router.get('/numbers/data', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.numData);
@@ -115,7 +115,7 @@ router.get('/numbers/data', (req, res) => {
         });
 });
 
-router.get('/numbers/data/:eventCode', (req, res) => {
+router.get('/numbers/data/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.numData);
@@ -125,7 +125,7 @@ router.get('/numbers/data/:eventCode', (req, res) => {
         });
 });
 
-router.get('/numbers/map', (req, res) => {
+router.get('/numbers/map', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.numDataMap);
@@ -135,7 +135,7 @@ router.get('/numbers/map', (req, res) => {
         });
 });
 
-router.get('/numbers/map/:eventCode', (req, res) => {
+router.get('/numbers/map/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.numDataMap);
@@ -145,7 +145,7 @@ router.get('/numbers/map/:eventCode', (req, res) => {
         });
 });
 
-router.get('/all', (req, res) => {
+router.get('/all', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.allData);
@@ -155,7 +155,7 @@ router.get('/all', (req, res) => {
         });
 });
 
-router.get('/all/:eventCode', (req, res) => {
+router.get('/all/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.allData);
@@ -165,7 +165,7 @@ router.get('/all/:eventCode', (req, res) => {
         });
 });
 
-router.get('/maxMin/data', (req, res) => {
+router.get('/maxMin/data', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.maxMin);
@@ -175,7 +175,7 @@ router.get('/maxMin/data', (req, res) => {
         });
 });
 
-router.get('/maxMin/data/:eventCode', (req, res) => {
+router.get('/maxMin/data/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.maxMin);
@@ -185,7 +185,7 @@ router.get('/maxMin/data/:eventCode', (req, res) => {
         });
 });
 
-router.get('/maxMin/averages', (req, res) => {
+router.get('/maxMin/averages', (req : Request, res : Response) => {
     fetchDataAndProcessAll()
         .then((data: any) => {
             res.send(data.maxMinOfAverages);
@@ -195,7 +195,7 @@ router.get('/maxMin/averages', (req, res) => {
         });
 });
 
-router.get('/maxMin/averages/:eventCode', (req, res) => {
+router.get('/maxMin/averages/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode)
         .then((data: any) => {
             res.send(data.maxMinOfAverages);

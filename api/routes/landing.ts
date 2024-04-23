@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { fetchDataAndProcess, fetchDataAndProcessAll } from '../database.js';
 
 var router = express.Router();
@@ -9,7 +9,7 @@ const noRoute =
     '/teams \n' +
     '/landing \n';
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req : Request, res : Response, next : NextFunction) {
     const response = noRoute;
     res.send(response);
 });
@@ -20,7 +20,7 @@ router.get('/full', (req : Request, res : Response) => {
     });
 });
 
-router.get('/full/:eventCode', (req, res) => {
+router.get('/full/:eventCode', (req : Request, res : Response) => {
     fetchDataAndProcess(req.params.eventCode).then((data : any) => {
         res.send(data.fullData);
     });
