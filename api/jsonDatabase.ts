@@ -3,7 +3,7 @@ import 'firebase/database';
 import db from './firebaseConfig.js';
 
 //Frank's Middle
-export async function getAllData() {
+export async function getAllData() : Promise<string | undefined> {
     try {
         const dbRef = ref(db);
         const snapshot = await get(dbRef);
