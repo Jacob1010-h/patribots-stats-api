@@ -27,180 +27,180 @@ router.get('/', function (req, res, next) {
 
 router.get('/raw/data', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data : any) => {
             res.send(data.rawData);
         })
-        .catch((error) => {
+        .catch((error : any) => {
             console.log(error);
         });
 });
 
 router.get('/raw/data/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.rawData);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/raw/map', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.rawDataMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/raw/map/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.rawDataMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/comments/data', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.commentData);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/comments/data/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.commentData);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/comments/map', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.commentDataMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/comments/map/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.commentDataMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/numbers/data', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.numData);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/numbers/data/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.numData);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/numbers/map', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.numDataMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/numbers/map/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.numDataMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/all', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.allData);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/all/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.allData);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/maxMin/data', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.maxMin);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/maxMin/data/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.maxMin);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/maxMin/averages', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.maxMinOfAverages);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/maxMin/averages/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.maxMinOfAverages);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });

@@ -208,6 +208,7 @@ export const fetchDataAndProcess = async (eventCode) => {
         //? TODO: Why does ths return empty?
         bigTeamMapSplit: bigTeamMapSplit,
         teamRankingArr: teamRankingArr,
+        teamRankingJson: convertTeamRankingToJson(teamRankingArr),
     };
 
     return {

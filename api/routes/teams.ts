@@ -27,160 +27,160 @@ router.get('/', function (req, res, next) {
 
 router.get('/comment/map', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.commentTeamMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/comment/map/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.commentTeamMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/num/map', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.numTeamMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/num/map/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.numTeamMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/big/map', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.bigTeamMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/big/map/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.bigTeamMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/big/mapSplit', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.bigTeamMapSplit);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/big/mapSplit/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.bigTeamMapSplit);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/average/map', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
-            res.send(data.averageTeamMap);
+        .then((data: any) => {
+            res.send(data.teamAverageMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/average/map/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
-            res.send(data.averageTeamMap);
+        .then((data: any) => {
+            res.send(data.teamAverageMap);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/rankings/arr', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.teamRankingArr);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/rankings/arr/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.teamRankingArr);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/rankings/json', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.teamRankingJson);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/rankings/json/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.teamRankingJson);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/rankings/table', (req, res) => {
     fetchDataAndProcessAll()
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.rankingTable);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/rankings/table/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             res.send(data.rankingTable);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
@@ -188,7 +188,7 @@ router.get('/rankings/table/:eventCode', (req, res) => {
 router.get('/rankings/team/:team', (req, res) => {
     const eventCode = '2024lake';
     fetchDataAndProcess(eventCode)
-        .then((data) => {
+        .then((data: any) => {
             var rank = getTeamRank(data.teamRankingArr, req.params.team);
             const response = {
                 team: req.params.team,
@@ -197,14 +197,14 @@ router.get('/rankings/team/:team', (req, res) => {
             };
             res.send(response);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });
 
 router.get('/rankings/team/:team/:eventCode', (req, res) => {
     fetchDataAndProcess(req.params.eventCode)
-        .then((data) => {
+        .then((data: any) => {
             var rank = getTeamRank(data.teamRankingArr, req.params.team);
             const response = {
                 team: req.params.team,
@@ -213,7 +213,7 @@ router.get('/rankings/team/:team/:eventCode', (req, res) => {
             };
             res.send(response);
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.log(error);
         });
 });

@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { fetchDataAndProcess, fetchDataAndProcessAll } from '../database.js';
 
 var router = express.Router();
@@ -14,14 +14,14 @@ router.get('/', function (req, res, next) {
     res.send(response);
 });
 
-router.get('/full', (req, res) => {
-    fetchDataAndProcessAll().then((data) => {
+router.get('/full', (req : Request, res : Response) => {
+    fetchDataAndProcessAll().then((data : any) => {
         res.send(data.fullData);
     });
 });
 
 router.get('/full/:eventCode', (req, res) => {
-    fetchDataAndProcess(req.params.eventCode).then((data) => {
+    fetchDataAndProcess(req.params.eventCode).then((data : any) => {
         res.send(data.fullData);
     });
 });
